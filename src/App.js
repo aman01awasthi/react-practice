@@ -2,9 +2,11 @@ import Header from './Header';
 import UserCard from './UserCard';
 import Button from './Button';
 import ProfileCard from './ProfileCard';
+import Counter from './Counter';
 
 export default function App(){
   return(
+    <>
     <div>
       <h1>
         Hello
@@ -16,5 +18,11 @@ export default function App(){
       <ProfileCard name="Nayan" role="Owner Awasthi Solar Energies" bio="Done Diploma SOlar Energies and ITI in Electronics"/>
       <ProfileCard name="Tanishq" role="Student at Medical College" bio="Studying MBBS from Hamirpur"/>
     </div>
+
+    <div>
+      <Counter title="Counter"/>
+    </div>
+
+    </>
   )
 }
