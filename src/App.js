@@ -3,6 +3,7 @@ import UserCard from './UserCard';
 import Button from './Button';
 import ProfileCard from './ProfileCard';
 import Counter from './Counter';
+import Form from './Form';
 
 export default function App(){
   return(
@@ -21,6 +22,10 @@ export default function App(){
 
     <div>
       <Counter title="Counter"/>
+    </div>
+
+    <div>
+      <Form title="User Form"/>
     </div>
 
     </>
