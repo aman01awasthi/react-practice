@@ -4,6 +4,7 @@ import Button from './Button';
 import ProfileCard from './ProfileCard';
 import Counter from './Counter';
 import Form from './Form';
+import Shopping from './Shopping';
 
 export default function App(){
   return(
@@ -26,6 +27,10 @@ export default function App(){
 
     <div>
       <Form title="User Form"/>
+    </div>
+
+    <div>
+      <Shopping title="Shopping Card" itemName="React" price="555"/>
     </div>
 
     </>
