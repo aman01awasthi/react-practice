@@ -6,10 +6,14 @@ import Counter from "./Counter";
 import Form from "./Form";
 import Shopping from "./Shopping";
 import Users from "./Users";
+import SearchUsers from "./SearchUsers"
 
 export default function App() {
   return (
     <>
+    <div>
+      <SearchUsers title="Search User"/>
+    </div>
       <div>
         <h1>Hello</h1>
         <Header title="My App" />
