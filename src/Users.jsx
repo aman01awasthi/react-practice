@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 // 5. inside effect — fetch, handle loading, handle error
 // 6. return JSX — show loading text, error text, or data
 
-function Users() {
+function Users({title}) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ function Users() {
   useEffect(() => {
     async function getData() {
       try {
-        let res = await fetch(`https://jsonplaceholder.typicode.com/broken`);
+        let res = await fetch(`https://jsonplaceholder.typicode.com/users`);
         let result = await res.json();
         if (res.ok) {
           setData(result);
@@ -50,10 +50,13 @@ function Users() {
   }
 
   return (
-    <div>
-        {data.map((user)=>(
-            <p key={user.id}>{user.name}</p>
-        ))}
+      <div>
+        <h2>{title}</h2>
+        <div className="userData">
+            {data.map((user)=>(
+                <p key={user.id}>{user.name}</p>
+            ))}
+        </div>
     </div>
 );
 }

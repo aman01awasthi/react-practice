@@ -45,7 +45,7 @@ export default function App() {
       </div>
 
       <div>
-        <Users />
+        <Users title="Users Data"/>
       </div>
     </>
   );

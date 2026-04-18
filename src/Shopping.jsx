@@ -3,7 +3,7 @@
 //as per user required quantity price gets updated
 import { useState } from "react";
 
-function Shopping({title,itemName, price}){
+function Shopping({title, itemName, price}){
     const [quantity, setQuantity] = useState(1);
     const handleDecrement = () => {
         if(quantity === 1){
