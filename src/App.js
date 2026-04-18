@@ -1,24 +1,31 @@
 import Header from "./Header";
 import UserCard from "./UserCard";
-import Button from "./Button";
 import ProfileCard from "./ProfileCard";
 import Counter from "./Counter";
 import Form from "./Form";
 import Shopping from "./Shopping";
 import Users from "./Users";
-import SearchUsers from "./SearchUsers"
+import SearchUsers from "./SearchUsers";
+import Count from "./Count";
+import { useState } from "react";
 
 export default function App() {
+  const [show, setShow] = useState(true);
+  function handleToggle(){
+    // setShow(prev => prev ? false : true);
+    setShow(prev => !prev);
+  }
+
   return (
     <>
-    <div>
-      <SearchUsers title="Search User"/>
-    </div>
+      <div>
+        <SearchUsers title="Search User" />
+      </div>
       <div>
         <h1>Hello</h1>
         <Header title="My App" />
         <UserCard name="Aman" role="Frontend developer" />
-        <Button label="Done" />
+        <button label="Done" />
         <ProfileCard
           name="Harsh"
           role="F&B Manager"
@@ -49,7 +56,12 @@ export default function App() {
       </div>
 
       <div>
-        <Users title="Users Data"/>
+        <Users title="Users Data" />
+      </div>
+
+      <div>
+        <button onClick={handleToggle}>Toggle Count Component</button>
+        <div>{show && <Count title="Timer" />}</div>
       </div>
     </>
   );
