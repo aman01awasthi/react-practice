@@ -1,65 +1,67 @@
+//This is the Parent COmponent
+//Purpose: Post list will fetch data from api and then pass each data to child Post Card
+//Receives: here will receive data from ap
+
 import { useEffect, useState } from "react";
 import PostCard from "./PostCard";
-import Skeleton from "./Skeleton";
 
-export default function PostList() {
-  const [posts, setPosts] = useState([]);
-  const [likes, setLikes] = useState({});
+//Returns: will pass data to child component
+function PostList() {
+  const [data, setData] = useState([]);
+  const [like, setLike] = useState({});
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchPosts() {
+    async function getData() {
       try {
         setLoading(true);
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-
-        if (!res.ok) throw new Error("Failed to fetch");
-
-        const data = await res.json();
-        setPosts(data);
-
-        // initialize likes
-        const initialLikes = {};
-        data.forEach(post => {
-          initialLikes[post.id] = 0;
-        });
-        setLikes(initialLikes);
-
-      } catch (err) {
-        setError(err.message);
+        let res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+        let response = await res.json();
+        if (res.ok) {
+          setData(response);
+          return response;
+        }
+      } catch (error) {
+        return setError("Data Not found");
       } finally {
         setLoading(false);
       }
     }
-
-    fetchPosts();
+    getData();
   }, []);
 
-  // callback passed to child
-  function handleLike(id) {
-    setLikes(prev => ({
+  let handleLike = (id) => {
+    setLike((prev) => ({
       ...prev,
-      [id]: prev[id] + 1
+      [id]: (prev[id] || 0) + 1,
     }));
+  };
+
+  if (loading) {
+    return "loading...";
+  }
+  if (error) {
+    return "Data not found";
   }
 
-  // 🔹 Conditional Rendering
-  if (loading) return <Skeleton />;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-
   return (
-    <div>
-      <h2>Posts</h2>
-
-      {posts.map(post => (
-        <PostCard
-          key={post.id}   // ✅ correct key
-          post={post}
-          likes={likes[post.id]}
-          onLike={handleLike}
-        />
-      ))}
-    </div>
+    <>
+      <div>
+        <h1>Postlist Here</h1>
+        {data.map((post) => (
+          <PostCard
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            body={post.body}
+            likes={like}
+            onLike={handleLike}
+          />
+        ))}
+      </div>
+    </>
   );
 }
+
+export default PostList;

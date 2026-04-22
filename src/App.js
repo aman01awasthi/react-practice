@@ -8,6 +8,7 @@ import Users from "./Users";
 import SearchUsers from "./SearchUsers";
 import Count from "./Count";
 import { useState } from "react";
+import PostList from "./PostList";
 
 export default function App() {
   const [show, setShow] = useState(true);
@@ -62,6 +63,10 @@ export default function App() {
       <div>
         <button onClick={handleToggle}>Toggle Count Component</button>
         <div>{show && <Count title="Timer" />}</div>
+      </div>
+
+      <div>
+        <PostList/>
       </div>
     </>
   );
