@@ -1,25 +1,39 @@
-import Header from "./Header";
-import UserCard from "./UserCard";
-import ProfileCard from "./ProfileCard";
-import Counter from "./Counter";
-import Form from "./Form";
-import Shopping from "./Shopping";
-import Users from "./Users";
-import SearchUsers from "./SearchUsers";
-import Count from "./Count";
-import { useState } from "react";
-import PostList from "./PostList";
+// import Header from "./Header";
+// import UserCard from "./UserCard";
+// import ProfileCard from "./ProfileCard";
+// import Counter from "./Counter";
+// import Form from "./Form";
+// import Shopping from "./Shopping";
+// import Users from "./Users";
+// import SearchUsers from "./SearchUsers";
+// import Count from "./Count";
+// import { useState } from "react";
+// import PostList from "./PostList";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Posts from "./pages/Posts"
+import Navbar from "./component/Navbar";
+import PostDetails from "./pages/PostDetails";
 
 export default function App() {
-  const [show, setShow] = useState(true);
-  function handleToggle(){
-    // setShow(prev => prev ? false : true);
-    setShow(prev => !prev);
-  }
+  // const [show, setShow] = useState(true);
+  // function handleToggle(){
+  //   // setShow(prev => prev ? false : true);
+  //   setShow(prev => !prev);
+  // }
 
   return (
     <>
-      <div>
+    <Navbar/>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/about" element={<About/>}/>
+      <Route path="/posts" element={<Posts/>}/>
+      <Route path="/posts/:id" element={<PostDetails/>}/>
+    </Routes>
+
+      {/* <div>
         <SearchUsers title="Search User" />
       </div>
       <div>
@@ -67,7 +81,7 @@ export default function App() {
 
       <div>
         <PostList/>
-      </div>
+      </div> */}
     </>
   );
 }
